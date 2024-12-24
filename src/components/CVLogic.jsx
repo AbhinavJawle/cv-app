@@ -13,39 +13,79 @@ const EMPTY_EXPERIENCE = {
   responsibilities: "",
 };
 
+// const INITIAL_STATE = {
+//   generalInfo: { name: "", email: "", phone: "" },
+//   education: [{ id: Date.now(), ...EMPTY_EDUCATION }],
+//   experience: [{ id: Date.now(), ...EMPTY_EXPERIENCE }],
+// };
+
 const INITIAL_STATE = {
   generalInfo: {
-    name: "Morgan Oakely",
-    email: "morganoakley77@gmail.key",
-    phone: "1234567890",
+    name: "John Doe",
+    email: "johndoe@example.com",
+    phone: "+1234567890",
   },
-
-  //can add more to following
-  experience: [
+  education: [
     {
-      id: 1,
-      company: "Morgan Stanley",
-      position: "CEO",
-      date: "",
-      responsibilities: "Important tasks",
+      id: Date.now(),
+      school: "Springfield High School",
+      title: "12th Grade",
+      date: "2015",
+    },
+    {
+      id: Date.now() + 1,
+      school: "Harvard University",
+      title: "Bachelor of Science in Computer Science",
+      date: "2019",
+    },
+    {
+      id: Date.now() + 2,
+      school: "Stanford University",
+      title: "Master of Science in Computer Science",
+      date: "2021",
     },
   ],
-
-  education: [
-    { id: 1, school: "Morgan Convent", degreeTitle: "HSC", date: "" },
+  experience: [
+    {
+      id: Date.now() + 3,
+      company: "Tech Solutions Inc.",
+      position: "Software Engineer",
+      date: "2020-2022",
+      responsibilities:
+        "Developed and maintained web applications using React, Node.js, and MongoDB. Led a team of 3 junior developers.",
+    },
+    {
+      id: Date.now() + 4,
+      company: "Innovative Tech Corp.",
+      position: "Senior Software Engineer",
+      date: "2022-Present",
+      responsibilities:
+        "Worked on the development of enterprise-level software solutions. Mentored junior engineers and collaborated with cross-functional teams to enhance product features.",
+    },
   ],
 };
 
-const useCV = () => {
-  const { cv, setCV } = useState(INITIAL_STATE);
+export const useCV = () => {
+  const [cv, setCV] = useState(INITIAL_STATE);
 
-  const updateGeneralInfo = (field, value) => {
+  // Updated to handle section and field parameters
+  const updateGeneralInfo = (section, field, value) => {
     setCV((prev) => ({
       ...prev,
-      generalInfo: {
-        ...prev.generalInfo,
+      [section]: {
+        ...prev[section],
         [field]: value,
       },
+    }));
+  };
+
+  // Updated to use index instead of id
+  const updateItem = (section, index, field, value) => {
+    setCV((prev) => ({
+      ...prev,
+      [section]: prev[section].map((item, idx) =>
+        idx === index ? { ...item, [field]: value } : item
+      ),
     }));
   };
 
@@ -58,19 +98,10 @@ const useCV = () => {
     }));
   };
 
-  const updateItem = (section, id, field, value) => {
-    setCV((prev) => ({
-      ...prev,
-      [section]: prev[section].map((sectionItem) =>
-        sectionItem.id === id ? { ...sectionItem, [field]: value } : sectionItem
-      ),
-    }));
-  };
-
   const removeItem = (section, id) => {
     setCV((prev) => ({
       ...prev,
-      [section]: prev[section].filter((sectionItem) => sectionItem.id !== id),
+      [section]: prev[section].filter((item) => item.id !== id),
     }));
   };
 
@@ -82,5 +113,3 @@ const useCV = () => {
     removeItem,
   };
 };
-
-export { useCV };
