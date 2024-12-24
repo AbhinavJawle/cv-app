@@ -1,0 +1,134 @@
+/* CVApp.css */
+
+:root {
+  --background-color: linear-gradient(lightpink, rgb(248, 164, 164));
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+.cv-app {
+  min-height: 100vh;
+  background: var(--background-color);
+  padding: 2rem;
+}
+
+.cv-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1.5fr;
+  gap: 2rem;
+  align-items: start; /* Aligns grid items to the start */
+}
+
+.edit-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 2rem; /* Matches top padding of cv-app */
+  max-height: calc(
+    100vh - 4rem
+  ); /* Viewport height minus top and bottom padding */
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */ /* Allows scrolling within preview if content is too long */
+}
+
+/* Resume Preview Styles */
+.resume {
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: "Arial", sans-serif;
+  color: #333;
+}
+
+.resume-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.resume-header h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+}
+
+.resume-contact {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.resume-section {
+  margin-bottom: 1.5rem;
+  padding: 0 1rem; /* Added horizontal padding */
+}
+
+.resume-section-title {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2c3e50;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.education-entry,
+.experience-entry {
+  margin-bottom: 0.5rem; /* Increased spacing between entries */
+  padding: 1rem; /* Added padding */
+  background: #fafafa; /* Light background for better separation */
+  border-radius: 4px;
+}
+
+.education-entry h3,
+.experience-entry h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.25rem 0;
+  color: #2c3e50;
+}
+
+.education-entry p,
+.experience-entry p {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4; /* Improved line height for readability */
+}
+
+.experience-entry .responsibilities {
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.9rem;
+  white-space: pre-line; /* Preserves line breaks in responsibilities */
+}
+
+/* Make sure the preview section stays in place on mobile */
+@media (max-width: 768px) {
+  .cv-container {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-section {
+    position: relative;
+    top: 0;
+    max-height: none;
+    margin-bottom: 2rem;
+  }
+}

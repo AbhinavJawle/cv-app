@@ -1,3 +1,8 @@
-export default function App() {
-  return <h1 className="text-red-700">Hello tailwind</h1>;
+// src/App.jsx
+import { CVApp } from "./components/CVApp";
+
+function App() {
+  return <CVApp />;
 }
+
+export default App;
