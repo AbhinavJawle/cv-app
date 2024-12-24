@@ -82,3 +82,5 @@ const useCV = () => {
     removeItem,
   };
 };
+
+export { useCV };
