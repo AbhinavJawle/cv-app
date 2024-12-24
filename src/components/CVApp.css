@@ -120,7 +120,7 @@
 }
 
 /* Make sure the preview section stays in place on mobile */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .cv-container {
     grid-template-columns: 1fr;
   }

@@ -1,6 +1,5 @@
 import { useCV } from "./CVLogic";
 import { CVForm } from "./CVForm";
-// import { Card } from "@/components/ui/card";
 import "./CVApp.css"; // Add this for the imported CSS file
 
 const CVPreview = ({ cv }) => (
